@@ -3,6 +3,7 @@ import { TabNavigation } from '@/components/layout/TabNavigation';
 import { LongTermGoals } from '@/components/goals/LongTermGoals';
 import { TaskManager } from '@/components/tasks/TaskManager';
 import { RollingWaves } from '@/components/waves/RollingWaves';
+import { Analytics } from '@/components/analytics/Analytics';
 import { BackupControls } from '@/components/backup/BackupControls';
 
 function ProductivityApp() {
@@ -12,7 +13,7 @@ function ProductivityApp() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 py-4">
+        <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div>
@@ -31,10 +32,11 @@ function ProductivityApp() {
       </header>
 
       {/* Main content */}
-      <main className="max-w-5xl mx-auto px-6 py-8">
+      <main className="max-w-6xl mx-auto px-6 py-8">
         {state.activeTab === 'goals' && <LongTermGoals />}
         {state.activeTab === 'tasks' && <TaskManager />}
         {state.activeTab === 'waves' && <RollingWaves />}
+        {state.activeTab === 'analytics' && <Analytics />}
       </main>
 
       {/* Footer */}

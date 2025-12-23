@@ -127,7 +127,7 @@ export interface ProductivityState {
   // Rolling waves
   waves: Wave[];
   // Active tab
-  activeTab: 'goals' | 'tasks' | 'waves';
+  activeTab: 'goals' | 'tasks' | 'waves' | 'analytics';
   // Legacy: kept for migration
   goalCategories?: GoalCategory[];
 }

@@ -1,4 +1,4 @@
-import { Target, ListTree, Waves } from 'lucide-react';
+import { Target, ListTree, Waves, BarChart3 } from 'lucide-react';
 import { useProductivity } from '@/store/productivityStore';
 import { cn } from '@/lib/utils';
 
@@ -6,6 +6,7 @@ const tabs = [
   { id: 'goals' as const, label: 'Long-Term Goals', icon: Target },
   { id: 'tasks' as const, label: 'Task Manager', icon: ListTree },
   { id: 'waves' as const, label: 'Rolling Waves', icon: Waves },
+  { id: 'analytics' as const, label: 'Analytics', icon: BarChart3 },
 ];
 
 export function TabNavigation() {
