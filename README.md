@@ -59,7 +59,7 @@ Clarity is built around a few strong ideas:
 * No forced categories or rigid formats
 * Think of this as your *thinking space*, not a checklist
 
-![alt text](image-4.png)
+![alt text](image-8.png)
 
 ---
 
@@ -70,7 +70,7 @@ Clarity is built around a few strong ideas:
 * Categories are color-coded to help your brain group things visually
 * You can highlight important sub-categories if needed
 
-![alt text](image-5.png)
+![alt text](image-9.png)
 
 ---
 
@@ -95,9 +95,12 @@ Each wave:
 * Tasks can only be linked to the **currently active wave**
 * Once a wave’s end date is exceeded, it is automatically marked as *Completed*
 
-![alt text](image-6.png)
+![alt text](image-10.png)
 
-![alt text](image-7.png)
+![alt text](image-11.png)
+
+![alt text](screencapture-localhost-8081-2025-12-23-15_43_30.png)
+
 
 ---
 
