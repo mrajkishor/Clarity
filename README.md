@@ -36,9 +36,8 @@ Clarity is now available as a native **Windows desktop application**.
 
 ### Download
 
-- **Version:** 1.1.0  
-- **Windows Installer (.exe):**  
-  `desktop/release/Clarity Setup 1.1.0.exe`
+- **Version:** 1.2.0  
+- **Windows Installer (.exe): Check 1.2.0 release**  
 
 
 > Download the installer, run it once, and Clarity will be available from the Start Menu like a regular Windows app.
