@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  A calm, opinionated system for focused execution — one meaningful phase at a time.
+ Inspired by (Rolling wave approach to project management)[https://www.pmi.org/learning/library/rolling-wave-approach-project-management-10514]
 </p>
 
 <hr />
