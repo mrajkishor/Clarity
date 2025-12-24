@@ -23,8 +23,12 @@
 </p>
 
 <p align="center">
- Inspired by [Rolling wave approach to project management](https://www.pmi.org/learning/library/rolling-wave-approach-project-management-10514)
+  Inspired by
+  <a href="https://www.pmi.org/learning/library/rolling-wave-approach-project-management-10514">
+    Rolling Wave approach to project management
+  </a>
 </p>
+
 
 <hr />
 
