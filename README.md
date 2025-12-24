@@ -30,7 +30,7 @@
 
 
 # Clarity
-> v1.0.0-classic
+> v0.2.0
 
 
 Clarity is a simple but opinionated system to help you **think clearly, plan deliberately, and execute without mental clutter**.
