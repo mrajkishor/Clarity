@@ -30,8 +30,32 @@
 
 
 # Clarity
-> v1.0.0-classic
 
+
+Clarity is now available as a native **Windows desktop application**.
+
+### Download
+
+- **Version:** 1.1.0  
+- **Windows Installer (.exe):**  
+  `desktop/release/Clarity Setup 1.1.0.exe`
+
+
+> Download the installer, run it once, and Clarity will be available from the Start Menu like a regular Windows app.
+> ![alt text](image-18.png)
+
+### Notes
+
+- Windows only
+- Works fully offline
+- No browser required
+- All data remains on your local machine
+
+
+---
+
+
+## About this App
 
 Clarity is a simple but opinionated system to help you **think clearly, plan deliberately, and execute without mental clutter**.
 
@@ -61,7 +85,7 @@ Clarity is built around a few strong ideas:
 * No forced categories or rigid formats
 * Think of this as your *thinking space*, not a checklist
 
-![alt text](image-8.png)
+![alt text](image-12.png)
 
 ---
 
@@ -72,7 +96,7 @@ Clarity is built around a few strong ideas:
 * Categories are color-coded to help your brain group things visually
 * You can highlight important sub-categories if needed
 
-![alt text](image-9.png)
+![alt text](image-13.png)
 
 ---
 
@@ -97,12 +121,13 @@ Each wave:
 * Tasks can only be linked to the **currently active wave**
 * Once a wave’s end date is exceeded, it is automatically marked as *Completed*
 
-![alt text](image-10.png)
+![alt text](image-14.png)
 
-![alt text](image-11.png)
+![alt text](image-15.png)
 
-![alt text](screencapture-localhost-8081-2025-12-23-15_43_30.png)
+![alt text](image-16.png)
 
+![alt text](image-17.png)
 
 ---
 

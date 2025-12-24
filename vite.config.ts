@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [react(), mode === "development"].filter(Boolean),
+  base: './',// REQUIRED FOR ELECTRON
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
