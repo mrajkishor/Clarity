@@ -30,6 +30,8 @@
 
 
 # Clarity
+> v1.0.0-classic
+
 
 Clarity is a simple but opinionated system to help you **think clearly, plan deliberately, and execute without mental clutter**.
 
@@ -155,63 +157,201 @@ Clarity is open to contributors who value **clean logic, predictable behavior, a
 
 ---
 
-## Tech Stack
 
-### Frontend
+## Tech Stack Overview
 
-* **React**
-* **TypeScript**
-* **Modern state management** (predictable & explicit)
-* **WYSIWYG editor** for rich text input
-* **Color picker library** (HEX-based storage)
-* Clean component separation (no monolith UI components)
+Clarity is built as a **modern, front-end focused application** with strong emphasis on predictability, simplicity, and long-term maintainability.
 
----
+The stack choices favor:
 
-### Styling
-
-* Utility-first CSS approach (e.g. Tailwind or equivalent)
-* Emphasis on readability and visual hierarchy
-* Color is treated as data, not just decoration
+* Explicit state over magic
+* Calm UX over flashy abstractions
+* Developer clarity over cleverness
 
 ---
 
-### Data Handling
+## Frontend
 
-* Strong schema validation during import/export
-* Defensive normalization (arrays, defaults, backward compatibility)
-* No silent failures
-* Exported data must always be re-importable
+### React
+
+* Core UI library
+* Component-driven architecture
+* Clean separation of concerns (layout, features, state)
+
+Used for:
+
+* Rendering all views (Goals, Tasks, Waves, Analytics)
+* Declarative UI updates based on state changes
 
 ---
 
-### Architecture Principles
+### TypeScript
 
-* Single source of truth for wave state
-* Explicit lifecycle transitions (In Progress → Completed → Snapshot)
+* Used across the entire codebase
+* Strong typing for:
+
+  * State models
+  * Import / export schemas
+  * Component props
+* Prevents silent runtime issues, especially during data import/export
+
+---
+
+## State Management
+
+### Custom Store (Zustand-style pattern)
+
+* Centralized productivity state (`useProductivity`)
+* Single source of truth for:
+
+  * Active tab
+  * Waves
+  * Tasks
+  * Goals
+  * Analytics data
+
+Why this approach:
+
+* Lightweight
+* No boilerplate explosion
+* Easy to reason about state transitions
+* Ideal for an opinionated app like Clarity
+
+---
+
+## UI & Layout
+
+### Tailwind CSS
+
+* Utility-first styling approach
+* Consistent spacing, typography, and color usage
+* Easy theme adjustments (light/dark, muted tones)
+
+Used for:
+
+* Layout width control (`max-w-*`)
+* Typography hierarchy
+* Color application for categories and waves
+* Responsive design
+
+---
+
+### Component Architecture
+
+Reusable, well-scoped components such as:
+
+* `TabNavigation`
+* `LongTermGoals`
+* `TaskManager`
+* `RollingWaves`
+* `Analytics`
+* `BackupControls`
+
+Each component:
+
+* Owns its UI logic
+* Reads from state, does not mutate blindly
+* Reflects business rules visually
+
+---
+
+## Rich Text Editing
+
+### WYSIWYG Editor
+
+* Used for:
+
+  * Long-term goals
+  * Categories and sub-categories
+* Allows free-form thinking without rigid structures
+
+Design choice:
+
+* Writing should feel natural
+* Goals are thoughts, not database rows
+
+---
+
+## Color System
+
+### Color Picker (HEX-based)
+
+* Full color palette instead of fixed presets
+* Stores colors as HEX values
+* Backward compatible with older saved colors
+
+Used for:
+
+* Category visualization
+* Cognitive grouping
+* Visual clarity, not decoration
+
+---
+
+## Analytics (Read-Only Layer)
+
+### Derived State
+
+* Analytics data is **derived**, not stored separately
+* Calculated from:
+
+  * Waves
+  * Tasks
+  * Categories
+
+Key rule:
+
+* Analytics never mutate core data
+* Purely reflective, not operational
+
+---
+
+## Import / Export System
+
+### JSON-based Backup
+
+* Full application state export
+* Strong schema normalization during import
+* Defensive parsing:
+
+  * Arrays enforced
+  * Defaults applied
+  * Backward compatibility preserved
+
+Goal:
+
+* Any exported file should always be importable
+* No data loss due to version changes
+
+---
+
+## Architecture Principles
+
+* Single active wave at a time
+* Immutable completed waves (snapshots)
 * No overlapping execution windows
-* UI reflects business rules, not the other way around
+* UI mirrors business logic, not vice-versa
+* Predictability > flexibility
 
 ---
 
-## Contribution Guidelines (High Level)
+## What’s Intentionally Not Used
 
-* Respect existing mental models (waves, snapshots, focus)
-* Avoid feature creep
-* Every new feature should answer:
-  **“Does this improve clarity or add noise?”**
-* Backward compatibility is mandatory
-* UX simplicity > clever abstractions
+* No heavy UI frameworks
+* No Redux boilerplate
+* No server-side dependency (yet)
+* No analytics trackers or telemetry
+* No gamification libraries
 
----
+Clarity is intentionally **quiet by design**.
 
-## Vision (Short)
 
-Clarity aims to become a **thinking companion**, not just a productivity app.
 
-Something you trust when your mind feels overloaded.
 
----
+> **Clarity is built with React + TypeScript + Tailwind, powered by a lightweight state store, designed around intentional constraints rather than feature overload.**
+
+
+
 
 
 

@@ -69,8 +69,8 @@ export function WaveItem({ wave }: WaveItemProps) {
         hasChildren={true}
         onToggle={() => dispatch({ type: 'TOGGLE_WAVE', payload: { id: wave.id } })}
         header={
-          <div className="flex items-center gap-3 flex-wrap">
-            <h3 className="text-lg font-serif font-medium">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 flex-wrap">
+            <h3 className="text-base sm:text-lg font-serif font-medium">
               <EditableText
                 value={wave.name}
                 onChange={(name) =>
@@ -82,63 +82,65 @@ export function WaveItem({ wave }: WaveItemProps) {
                 placeholder="Wave name..."
               />
             </h3>
-            <Badge variant="outline" className={cn('text-xs', statusColors[status])}>
-              {statusLabels[status]}
-            </Badge>
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              {isEditable ? (
-                <Unlock className="w-3 h-3" />
-              ) : (
-                <Lock className="w-3 h-3" />
-              )}
-              <span>{wave.dataMode === 'reference' ? 'Live' : 'Snapshot'}</span>
+            <div className="flex items-center gap-2 flex-wrap">
+              <Badge variant="outline" className={cn('text-[10px] sm:text-xs', statusColors[status])}>
+                {statusLabels[status]}
+              </Badge>
+              <div className="flex items-center gap-1 text-[10px] sm:text-xs text-muted-foreground">
+                {isEditable ? (
+                  <Unlock className="w-3 h-3" />
+                ) : (
+                  <Lock className="w-3 h-3" />
+                )}
+                <span>{wave.dataMode === 'reference' ? 'Live' : 'Snapshot'}</span>
+              </div>
+              <span className="text-[10px] sm:text-xs text-muted-foreground bg-secondary px-1.5 sm:px-2 py-0.5 rounded-full">
+                {wave.dataMode === 'reference' 
+                  ? wave.subCategoryRefs.length 
+                  : wave.subCategorySnapshots.length} tasks
+              </span>
             </div>
-            <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
-              {wave.dataMode === 'reference' 
-                ? wave.subCategoryRefs.length 
-                : wave.subCategorySnapshots.length} tasks
-            </span>
           </div>
         }
         actions={
           <Button
             variant="ghost"
             size="icon"
-            className="h-7 w-7 text-muted-foreground hover:text-destructive"
+            className="h-8 w-8 sm:h-7 sm:w-7 text-muted-foreground hover:text-destructive touch-manipulation"
             onClick={() => setShowDeleteConfirm(true)}
           >
             <Trash2 className="w-4 h-4" />
           </Button>
         }
       >
-        <div className="ml-8 mt-3 space-y-4 animate-fade-in">
+        <div className="ml-4 sm:ml-8 mt-3 space-y-3 sm:space-y-4 animate-fade-in">
           {/* Date range */}
-          <div className="flex flex-wrap items-center gap-4 p-3 bg-secondary/30 rounded-lg">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Start:</span>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-2 sm:gap-4 p-2.5 sm:p-3 bg-secondary/30 rounded-lg">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <Calendar className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+              <span className="text-xs sm:text-sm text-muted-foreground">Start:</span>
               <Input
                 type="date"
                 value={wave.startDate}
                 onChange={(e) => handleUpdateDates('startDate', e.target.value)}
-                className="h-8 w-auto"
+                className="h-8 flex-1 sm:flex-none sm:w-auto text-sm"
               />
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">End:</span>
+            <div className="flex items-center gap-2 w-full sm:w-auto pl-6 sm:pl-0">
+              <span className="text-xs sm:text-sm text-muted-foreground">End:</span>
               <Input
                 type="date"
                 value={wave.endDate}
                 onChange={(e) => handleUpdateDates('endDate', e.target.value)}
-                className="h-8 w-auto"
+                className="h-8 flex-1 sm:flex-none sm:w-auto text-sm"
               />
             </div>
           </div>
 
-          {/* Wave metadata */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-secondary/30 rounded-lg p-3">
-              <label className="text-xs text-muted-foreground block mb-2">
+          {/* Wave metadata - stack on mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div className="bg-secondary/30 rounded-lg p-2.5 sm:p-3">
+              <label className="text-[10px] sm:text-xs text-muted-foreground block mb-1.5 sm:mb-2">
                 Major Goals
               </label>
               <RichTextEditor
@@ -154,8 +156,8 @@ export function WaveItem({ wave }: WaveItemProps) {
               />
             </div>
 
-            <div className="bg-secondary/30 rounded-lg p-3">
-              <label className="text-xs text-muted-foreground block mb-2">
+            <div className="bg-secondary/30 rounded-lg p-2.5 sm:p-3">
+              <label className="text-[10px] sm:text-xs text-muted-foreground block mb-1.5 sm:mb-2">
                 Retrospective
               </label>
               <RichTextEditor
@@ -174,11 +176,11 @@ export function WaveItem({ wave }: WaveItemProps) {
 
           {/* Sub-categories */}
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="text-sm font-medium text-muted-foreground">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+              <h4 className="text-xs sm:text-sm font-medium text-muted-foreground">
                 Focus Tasks
                 {!isEditable && (
-                  <span className="ml-2 text-xs opacity-70">
+                  <span className="ml-2 text-[10px] sm:text-xs opacity-70">
                     (Readonly - {status === 'planned' ? 'wave not started' : 'wave completed'})
                   </span>
                 )}
@@ -194,11 +196,11 @@ export function WaveItem({ wave }: WaveItemProps) {
             {wave.dataMode === 'reference' ? (
               // In-progress wave: live references
               wave.subCategoryRefs.length === 0 ? (
-                <div className="text-center py-6 text-sm text-muted-foreground border border-dashed border-border rounded-lg">
+                <div className="text-center py-4 sm:py-6 text-xs sm:text-sm text-muted-foreground border border-dashed border-border rounded-lg">
                   No tasks added yet. Select tasks from Task Manager.
                 </div>
               ) : (
-                <div className="grid gap-3">
+                <div className="grid gap-2 sm:gap-3">
                   {wave.subCategoryRefs.map((ref) => (
                     <WaveSubCategoryRef
                       key={ref.subCategoryId}
@@ -211,11 +213,11 @@ export function WaveItem({ wave }: WaveItemProps) {
             ) : (
               // Planned/Completed wave: snapshots
               wave.subCategorySnapshots.length === 0 ? (
-                <div className="text-center py-6 text-sm text-muted-foreground border border-dashed border-border rounded-lg">
+                <div className="text-center py-4 sm:py-6 text-xs sm:text-sm text-muted-foreground border border-dashed border-border rounded-lg">
                   No tasks in this wave.
                 </div>
               ) : (
-                <div className="grid gap-3">
+                <div className="grid gap-2 sm:gap-3">
                   {wave.subCategorySnapshots.map((snapshot) => (
                     <WaveSubCategorySnapshot
                       key={snapshot.id}

@@ -240,6 +240,16 @@
     background-color: hsl(var(--muted));
     border-radius: 3px;
   }
+
+  /* Safe area for mobile bottom navigation */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Touch manipulation for better mobile interaction */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
 }
 
 /* Tiptap editor styles */

@@ -39,12 +39,6 @@ export function CategoryItem({ category }: CategoryItemProps) {
     setShowDeleteConfirm(false);
   };
 
-  // Strip HTML tags to get plain text for display
-  const getPlainText = (html: string) => {
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    return doc.body.textContent || '';
-  };
-
   return (
     <>
       <TreeNode
@@ -55,7 +49,7 @@ export function CategoryItem({ category }: CategoryItemProps) {
           dispatch({ type: 'TOGGLE_CATEGORY', payload: { id: category.id } })
         }
         header={
-          <div className="flex items-center gap-2 flex-1">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-1">
             <FolderOpen 
               className="w-4 h-4 flex-shrink-0" 
               style={{ 
@@ -76,14 +70,14 @@ export function CategoryItem({ category }: CategoryItemProps) {
                 minimal
               />
             </div>
-            <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full flex-shrink-0">
+            <span className="text-[10px] sm:text-xs text-muted-foreground bg-secondary px-1.5 sm:px-2 py-0.5 rounded-full flex-shrink-0">
               {category.subCategories.length}
             </span>
           </div>
         }
         actions={
           <>
-            <div className="flex items-center gap-1 mr-2">
+            <div className="flex items-center gap-0.5 sm:gap-1 mr-1 sm:mr-2">
               <ColorPicker
                 value={category.color}
                 onChange={(color) =>
@@ -97,7 +91,7 @@ export function CategoryItem({ category }: CategoryItemProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7"
+              className="h-8 w-8 sm:h-7 sm:w-7 touch-manipulation"
               onClick={handleAddSubCategory}
             >
               <Plus className="w-4 h-4" />
@@ -105,7 +99,7 @@ export function CategoryItem({ category }: CategoryItemProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 text-muted-foreground hover:text-destructive"
+              className="h-8 w-8 sm:h-7 sm:w-7 text-muted-foreground hover:text-destructive touch-manipulation"
               onClick={() => setShowDeleteConfirm(true)}
             >
               <Trash2 className="w-4 h-4" />

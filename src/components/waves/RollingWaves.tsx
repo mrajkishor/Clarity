@@ -51,24 +51,24 @@ export function RollingWaves() {
 
   return (
     <div className="animate-fade-in">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
         <div>
-          <h2 className="text-2xl font-serif font-medium">Rolling Waves</h2>
-          <p className="text-muted-foreground text-sm mt-1">
+          <h2 className="text-xl sm:text-2xl font-serif font-medium">Rolling Waves</h2>
+          <p className="text-muted-foreground text-xs sm:text-sm mt-0.5 sm:mt-1">
             Time-boxed execution cycles for focused work
           </p>
         </div>
-        <Button onClick={handleAddWave} variant="outline" size="sm">
+        <Button onClick={handleAddWave} variant="outline" size="sm" className="self-start sm:self-auto h-9 sm:h-8 touch-manipulation">
           <Plus className="w-4 h-4 mr-2" />
           New Wave
         </Button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {state.waves.length === 0 ? (
-          <div className="text-center py-12 text-muted-foreground">
-            <p className="mb-4">No waves yet</p>
-            <Button onClick={handleAddWave} variant="secondary">
+          <div className="text-center py-8 sm:py-12 text-muted-foreground">
+            <p className="mb-4 text-sm sm:text-base">No waves yet</p>
+            <Button onClick={handleAddWave} variant="secondary" className="h-10 touch-manipulation">
               <Plus className="w-4 h-4 mr-2" />
               Start your first wave
             </Button>

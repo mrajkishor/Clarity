@@ -65,7 +65,7 @@ export function SubCategoryItem({
           subCategory.isHighlighted && 'ring-2 ring-accent ring-offset-2 ring-offset-background rounded-lg'
         )}
         header={
-          <div className="flex items-center gap-2 flex-wrap flex-1">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap flex-1">
             <ColorDot color={categoryColor} />
             <div className="flex-1 min-w-0">
               <RichTextEditor
@@ -77,13 +77,13 @@ export function SubCategoryItem({
               />
             </div>
             {/* Compact execution badges in header */}
-            <div className="flex items-center gap-2 ml-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 ml-1 sm:ml-2">
               <StatusBadge status={subCategory.status} readonly />
-              <span className="text-xs text-muted-foreground">
+              <span className="text-[10px] sm:text-xs text-muted-foreground">
                 {Math.round(subCategory.completion * 100)}%
               </span>
               {subCategory.isHighlighted && (
-                <Sparkles className="w-3.5 h-3.5 text-accent" />
+                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-accent" />
               )}
             </div>
           </div>
@@ -92,46 +92,46 @@ export function SubCategoryItem({
           <Button
             variant="ghost"
             size="icon"
-            className="h-7 w-7 text-muted-foreground hover:text-destructive"
+            className="h-8 w-8 sm:h-7 sm:w-7 text-muted-foreground hover:text-destructive touch-manipulation"
             onClick={() => setShowDeleteConfirm(true)}
           >
             <Trash2 className="w-4 h-4" />
           </Button>
         }
       >
-        <div className="ml-12 mt-2 space-y-3 animate-fade-in">
-          {/* Execution fields row */}
-          <div className="flex flex-wrap items-center gap-4 py-2">
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Status:</span>
+        <div className="ml-6 sm:ml-12 mt-2 space-y-3 animate-fade-in">
+          {/* Execution fields - grid on mobile for better layout */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-start sm:items-center gap-3 sm:gap-4 py-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-xs text-muted-foreground">Status:</span>
               <StatusBadge
                 status={subCategory.status}
                 onChange={(status) => handleUpdateField({ status })}
               />
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Progress:</span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-xs text-muted-foreground">Progress:</span>
               <CompletionInput
                 value={subCategory.completion}
                 onChange={(completion) => handleUpdateField({ completion })}
               />
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Priority:</span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-xs text-muted-foreground">Priority:</span>
               <ImportanceBadge
                 importance={subCategory.importance}
                 onChange={(importance) => handleUpdateField({ importance })}
               />
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Highlight:</span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-xs text-muted-foreground">Highlight:</span>
               <Button
                 variant={subCategory.isHighlighted ? 'secondary' : 'ghost'}
                 size="sm"
-                className="h-6 px-2 text-xs"
+                className="h-7 sm:h-6 px-2 text-xs touch-manipulation"
                 onClick={() => handleUpdateField({ isHighlighted: !subCategory.isHighlighted })}
               >
                 <Sparkles className={cn(
@@ -144,8 +144,8 @@ export function SubCategoryItem({
           </div>
 
           {/* Comments section */}
-          <div className="bg-secondary/30 rounded-lg p-3">
-            <label className="text-xs text-muted-foreground block mb-2">
+          <div className="bg-secondary/30 rounded-lg p-2.5 sm:p-3">
+            <label className="text-[10px] sm:text-xs text-muted-foreground block mb-1.5 sm:mb-2">
               Notes & Comments
             </label>
             <RichTextEditor
