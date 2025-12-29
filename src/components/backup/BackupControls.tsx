@@ -91,12 +91,12 @@ export function BackupControls() {
 
   return (
     <>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5 sm:gap-2">
         <Button
           variant="outline"
           size="sm"
           onClick={handleExport}
-          className="gap-2"
+          className="gap-1.5 h-9 sm:h-8 px-3 touch-manipulation"
         >
           <Download className="h-4 w-4" />
           <span className="hidden sm:inline">Export</span>
@@ -106,7 +106,7 @@ export function BackupControls() {
           variant="outline"
           size="sm"
           onClick={handleImportClick}
-          className="gap-2"
+          className="gap-1.5 h-9 sm:h-8 px-3 touch-manipulation"
         >
           <Upload className="h-4 w-4" />
           <span className="hidden sm:inline">Import</span>

@@ -14,34 +14,44 @@ function ProductivityApp() {
   const { state } = useProductivity();
 
   return (
-    <div className="min-h-screen bg-background pb-20 lg:pb-0">
+    <div className="min-h-screen bg-background pb-24 lg:pb-0">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-border">
+      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 lg:py-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            {/* Logo and title - centered on mobile */}
+            <div className="flex items-center gap-3 min-w-0">
               <div className="min-w-0">
-                <h1 className="text-lg sm:text-xl font-serif font-medium tracking-tight truncate">
+                <h1 className="text-xl sm:text-xl font-serif font-medium tracking-tight">
                   Clarity
                 </h1>
-                <p className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">
+                <p className="text-[11px] sm:text-xs text-muted-foreground hidden sm:block">
                   Intentional planning, focused execution
                 </p>
               </div>
+            </div>
+            
+            {/* Actions - grouped on mobile */}
+            <div className="flex items-center gap-1 sm:gap-2">
               <BackupControls />
-              <Button variant="ghost" size="icon" asChild className="h-8 w-8 text-muted-foreground hover:text-foreground">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                asChild 
+                className="h-9 w-9 sm:h-8 sm:w-8 text-muted-foreground hover:text-foreground touch-manipulation"
+              >
                 <Link to="/about" title="About Clarity">
                   <HelpCircle className="w-4 h-4" />
                 </Link>
               </Button>
+              <TabNavigation />
             </div>
-            <TabNavigation />
           </div>
         </div>
       </header>
 
       {/* Main content */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6 lg:py-8">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-6 lg:py-8">
         {state.activeTab === 'goals' && <LongTermGoals />}
         {state.activeTab === 'tasks' && <TaskManager />}
         {state.activeTab === 'waves' && <RollingWaves />}

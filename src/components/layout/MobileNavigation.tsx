@@ -6,15 +6,15 @@ const tabs = [
   { id: 'goals' as const, label: 'Goals', icon: Target },
   { id: 'tasks' as const, label: 'Tasks', icon: ListTree },
   { id: 'waves' as const, label: 'Waves', icon: Waves },
-  { id: 'analytics' as const, label: 'Analytics', icon: BarChart3 },
+  { id: 'analytics' as const, label: 'Stats', icon: BarChart3 },
 ];
 
 export function MobileNavigation() {
   const { state, dispatch } = useProductivity();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-t border-border safe-area-bottom lg:hidden">
-      <div className="flex items-center justify-around h-16 px-2">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-lg border-t border-border/50 safe-area-bottom lg:hidden shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.08)]">
+      <div className="flex items-center justify-around h-[68px] px-1 max-w-md mx-auto">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = state.activeTab === tab.id;
@@ -24,14 +24,31 @@ export function MobileNavigation() {
               key={tab.id}
               onClick={() => dispatch({ type: 'SET_ACTIVE_TAB', payload: tab.id })}
               className={cn(
-                'flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg transition-all duration-200 min-w-[60px] touch-manipulation',
+                'relative flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl transition-all duration-300 min-w-[68px] touch-manipulation active:scale-95',
                 isActive
                   ? 'text-primary'
-                  : 'text-muted-foreground'
+                  : 'text-muted-foreground active:text-foreground'
               )}
             >
-              <Icon className={cn('w-5 h-5', isActive && 'scale-110')} />
-              <span className="text-[10px] font-medium leading-tight">{tab.label}</span>
+              {/* Active indicator dot */}
+              {isActive && (
+                <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
+              )}
+              <div className={cn(
+                'p-1.5 rounded-lg transition-all duration-300',
+                isActive ? 'bg-primary/10' : ''
+              )}>
+                <Icon className={cn(
+                  'w-5 h-5 transition-transform duration-300',
+                  isActive && 'scale-110'
+                )} />
+              </div>
+              <span className={cn(
+                'text-[11px] font-medium leading-none transition-all duration-300',
+                isActive ? 'opacity-100' : 'opacity-70'
+              )}>
+                {tab.label}
+              </span>
             </button>
           );
         })}

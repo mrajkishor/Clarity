@@ -21,8 +21,8 @@ export function GoalCard({ goal }: GoalCardProps) {
 
   return (
     <>
-      <div className="group bg-card border border-border rounded-lg p-3 sm:p-4 animate-fade-in">
-        <div className="flex items-start justify-between gap-2 sm:gap-3">
+      <div className="group bg-card border border-border/80 rounded-xl p-4 sm:p-4 animate-fade-in shadow-sm hover:shadow-md transition-shadow">
+        <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <RichTextEditor
               value={goal.content}
@@ -33,14 +33,14 @@ export function GoalCard({ goal }: GoalCardProps) {
                 })
               }
               placeholder="Write your goal here... Use headings, lists, and formatting to express your vision."
-              minHeight="100px"
+              minHeight="120px"
             />
           </div>
 
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 sm:h-7 sm:w-7 flex-shrink-0 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive touch-manipulation"
+            className="h-10 w-10 sm:h-8 sm:w-8 flex-shrink-0 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive hover:bg-destructive/10 touch-manipulation rounded-lg"
             onClick={() => setShowDeleteConfirm(true)}
           >
             <Trash2 className="w-4 h-4" />
