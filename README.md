@@ -23,8 +23,12 @@
 </p>
 
 <p align="center">
-  A calm, opinionated system for focused execution — one meaningful phase at a time.
+  Inspired by
+  <a href="https://www.pmi.org/learning/library/rolling-wave-approach-project-management-10514">
+    Rolling Wave approach to project management
+  </a>
 </p>
+
 
 <hr />
 
@@ -37,7 +41,7 @@ Clarity is now available as a native **Windows desktop application**.
 ### Download
 
 - **Version:** 1.2.0  
-- **Windows Installer (.exe): Check 1.2.0 release**  
+- **Windows Installer (.exe): Download [here](https://github.com/mrajkishor/Clarity/releases/download/v1.2.0/Clarity.Setup.1.1.0.exe)**  
 
 
 > Download the installer, run it once, and Clarity will be available from the Start Menu like a regular Windows app.
