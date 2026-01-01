@@ -5,6 +5,7 @@ import { MobileNavigation } from '@/components/layout/MobileNavigation';
 import { LongTermGoals } from '@/components/goals/LongTermGoals';
 import { TaskManager } from '@/components/tasks/TaskManager';
 import { RollingWaves } from '@/components/waves/RollingWaves';
+import { Notepad } from '@/components/notes/Notepad';
 import { Analytics } from '@/components/analytics/Analytics';
 import { BackupControls } from '@/components/backup/BackupControls';
 import { HelpCircle } from 'lucide-react';
@@ -17,21 +18,20 @@ function ProductivityApp() {
     <div className="min-h-screen bg-background pb-24 lg:pb-0">
       {/* Header */}
       <header className="sticky top-0 z-10 bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 lg:py-4">
-          <div className="flex items-center justify-between gap-2">
-            {/* Logo and title - centered on mobile */}
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="min-w-0">
-                <h1 className="text-xl sm:text-xl font-serif font-medium tracking-tight">
-                  Clarity
-                </h1>
-                <p className="text-[11px] sm:text-xs text-muted-foreground hidden sm:block">
-                  Intentional planning, focused execution
-                </p>
-              </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {/* Top bar with logo and actions */}
+          <div className="flex items-center justify-between py-3 lg:py-4">
+            {/* Logo and title */}
+            <div className="min-w-0">
+              <h1 className="text-xl font-serif font-medium tracking-tight">
+                Clarity
+              </h1>
+              <p className="text-[11px] sm:text-xs text-muted-foreground hidden sm:block">
+                Intentional planning, focused execution
+              </p>
             </div>
             
-            {/* Actions - grouped on mobile */}
+            {/* Actions */}
             <div className="flex items-center gap-1 sm:gap-2">
               <BackupControls />
               <Button 
@@ -44,8 +44,12 @@ function ProductivityApp() {
                   <HelpCircle className="w-4 h-4" />
                 </Link>
               </Button>
-              <TabNavigation />
             </div>
+          </div>
+          
+          {/* Desktop tab navigation - separate row */}
+          <div className="hidden lg:block -mb-px">
+            <TabNavigation />
           </div>
         </div>
       </header>
@@ -55,6 +59,7 @@ function ProductivityApp() {
         {state.activeTab === 'goals' && <LongTermGoals />}
         {state.activeTab === 'tasks' && <TaskManager />}
         {state.activeTab === 'waves' && <RollingWaves />}
+        {state.activeTab === 'notes' && <Notepad />}
         {state.activeTab === 'analytics' && <Analytics />}
       </main>
 

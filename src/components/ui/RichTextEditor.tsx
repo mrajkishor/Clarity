@@ -3,7 +3,9 @@ import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
-import { useEffect, useCallback, useState } from 'react';
+import { TextStyle } from '@tiptap/extension-text-style';
+import Color from '@tiptap/extension-color';
+import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import {
   Bold,
@@ -16,6 +18,7 @@ import {
   Heading3,
   Link as LinkIcon,
   Code,
+  Palette,
 } from 'lucide-react';
 import { Button } from './button';
 import {
@@ -31,7 +34,7 @@ interface RichTextEditorProps {
   placeholder?: string;
   className?: string;
   minHeight?: string;
-  minimal?: boolean; // Hides toolbar for inline editing
+  minimal?: boolean;
 }
 
 interface ToolbarButtonProps {
@@ -40,6 +43,19 @@ interface ToolbarButtonProps {
   children: React.ReactNode;
   title: string;
 }
+
+const TEXT_COLORS = [
+  { name: 'Default', value: '' },
+  { name: 'Red', value: '#ef4444' },
+  { name: 'Orange', value: '#f97316' },
+  { name: 'Amber', value: '#f59e0b' },
+  { name: 'Green', value: '#22c55e' },
+  { name: 'Teal', value: '#14b8a6' },
+  { name: 'Blue', value: '#3b82f6' },
+  { name: 'Indigo', value: '#6366f1' },
+  { name: 'Purple', value: '#a855f7' },
+  { name: 'Pink', value: '#ec4899' },
+];
 
 function ToolbarButton({ onClick, isActive, children, title }: ToolbarButtonProps) {
   return (
@@ -56,6 +72,67 @@ function ToolbarButton({ onClick, isActive, children, title }: ToolbarButtonProp
     >
       {children}
     </button>
+  );
+}
+
+function ColorButton({ editor }: { editor: Editor }) {
+  const [open, setOpen] = useState(false);
+  const currentColor = editor.getAttributes('textStyle').color || '';
+
+  const handleColorSelect = (color: string) => {
+    if (color === '') {
+      editor.chain().focus().unsetColor().run();
+    } else {
+      editor.chain().focus().setColor(color).run();
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <button
+          type="button"
+          title="Text color"
+          className={cn(
+            'p-1.5 rounded transition-colors relative',
+            currentColor
+              ? 'text-foreground'
+              : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+          )}
+        >
+          <Palette className="w-4 h-4" />
+          {currentColor && (
+            <span
+              className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-3 h-0.5 rounded-full"
+              style={{ backgroundColor: currentColor }}
+            />
+          )}
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-2" align="start">
+        <div className="grid grid-cols-5 gap-1">
+          {TEXT_COLORS.map((color) => (
+            <button
+              key={color.name}
+              type="button"
+              onClick={() => handleColorSelect(color.value)}
+              title={color.name}
+              className={cn(
+                'w-6 h-6 rounded-md border transition-all hover:scale-110',
+                currentColor === color.value && 'ring-2 ring-primary ring-offset-1',
+                color.value === '' && 'bg-background border-border'
+              )}
+              style={color.value ? { backgroundColor: color.value } : undefined}
+            >
+              {color.value === '' && (
+                <span className="text-xs text-muted-foreground">A</span>
+              )}
+            </button>
+          ))}
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }
 
@@ -139,6 +216,10 @@ function Toolbar({ editor }: { editor: Editor }) {
       
       <div className="w-px h-5 bg-border mx-1" />
       
+      <ColorButton editor={editor} />
+      
+      <div className="w-px h-5 bg-border mx-1" />
+      
       <ToolbarButton
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         isActive={editor.isActive('heading', { level: 1 })}
@@ -208,6 +289,8 @@ export function RichTextEditor({
         },
       }),
       Underline,
+      TextStyle,
+      Color,
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
@@ -235,7 +318,6 @@ export function RichTextEditor({
     },
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
-      // Return empty string if editor is empty (only has empty paragraph)
       if (html === '<p></p>' || !html) {
         onChange('');
       } else {
@@ -244,10 +326,8 @@ export function RichTextEditor({
     },
   });
 
-  // Sync external value changes
   useEffect(() => {
     if (editor && value !== editor.getHTML()) {
-      // Avoid unnecessary updates
       const currentContent = editor.getHTML();
       const normalizedCurrent = currentContent === '<p></p>' ? '' : currentContent;
       const normalizedValue = value || '';

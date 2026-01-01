@@ -69,6 +69,7 @@ const defaultState: ProductivityState = {
   goals: [],
   categories: [],
   waves: [],
+  notes: '',
 };
 
 // Sample initial state for first-time users
@@ -149,6 +150,7 @@ const sampleState: ProductivityState = {
       subCategorySnapshots: [],
     },
   ],
+  notes: '',
 };
 
 // Store actions interface
@@ -160,6 +162,9 @@ interface ProductivityActions {
   addGoal: (content?: string) => void;
   updateGoal: (id: string, content: string) => void;
   deleteGoal: (id: string) => void;
+  
+  // Notes actions
+  updateNotes: (content: string) => void;
   
   // Task Category actions
   addCategory: (name: string) => void;
@@ -224,6 +229,9 @@ export const useProductivityStore = create<ProductivityStore>()(
       deleteGoal: (id) => set((state) => ({
         goals: state.goals.filter((goal) => goal.id !== id),
       })),
+      
+      // Notes actions
+      updateNotes: (content) => set({ notes: content }),
       
       // Task Category actions
       addCategory: (name) => set((state) => ({
@@ -581,6 +589,7 @@ export const useProductivityStore = create<ProductivityStore>()(
           goals: state.goals,
           categories: state.categories,
           waves: state.waves,
+          notes: state.notes,
         };
       },
       
@@ -589,6 +598,7 @@ export const useProductivityStore = create<ProductivityStore>()(
         goals: newState.goals || [],
         categories: newState.categories,
         waves: newState.waves,
+        notes: newState.notes || '',
       }),
       
       resetToDefault: () => set(defaultState),
@@ -601,6 +611,7 @@ export const useProductivityStore = create<ProductivityStore>()(
         goals: state.goals,
         categories: state.categories,
         waves: state.waves,
+        notes: state.notes,
       }),
     }
   )
@@ -679,6 +690,7 @@ export function useProductivity() {
       goals: store.goals,
       categories: store.categories,
       waves: store.waves,
+      notes: store.notes,
     },
     dispatch,
     getSubCategory: store.getSubCategory,
