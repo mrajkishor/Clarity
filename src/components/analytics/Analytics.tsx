@@ -5,7 +5,7 @@ import { ReflectionNotes } from './ReflectionNotes';
 
 export function Analytics() {
   return (
-    <div className="space-y-8 sm:space-y-12">
+    <div className="animate-fade-in space-y-8 sm:space-y-12">
       {/* Header */}
       <div>
         <h2 className="text-xl sm:text-2xl font-serif font-medium tracking-tight">
